@@ -4,10 +4,16 @@ import NavBar from './NavBar';
 import CartContainer from './CartContainer';
 import { createStore } from 'redux';
 
-function reducer() {
-  console.log("shake and bake");
+const initialStore = {
+  count: 0
 }
-const store = createStore(reducer);
+
+function reducer(state, action) {
+  console.log({state, action});
+  return state;
+}
+
+const store = createStore(reducer, initialStore);
 
 function App() {
   return (
