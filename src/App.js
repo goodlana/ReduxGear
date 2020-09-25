@@ -1,27 +1,24 @@
 import React from 'react';
-import cartItems from './cart-items'
-import NavBar from './NavBar';
-import CartContainer from './CartContainer';
+import NavBar from './Components/NavBar';
+import CartContainer from './Components/CartContainer';
 import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import reducer from './reducer';
 
-const initialStore = {
-  count: 78
-}
 
-function reducer(state, action) {
-  console.log({state, action});
-  return state;
-}
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-const store = createStore(reducer, initialStore);
-console.log(store.getState())
+
 
 function App() {
   return (
-    <main>
-      <NavBar cart={store.getState()}/>
-      <CartContainer cart={cartItems}/>
-    </main>
+    <Provider store={store}>
+      <NavBar />
+      <CartContainer />
+    </Provider>
   );
 }
 
